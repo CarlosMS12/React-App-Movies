@@ -121,7 +121,7 @@ const HomeScreen = ({navigation}: any) => {
                   cardWidth={width / 3}
                   isFirst={index == 0 ? true:false}
                   isLast={index == upcomingMoviesList?.length - 1 ? true : false}
-                  title={item.original_title} 
+                  title={item.title} 
                   imagePath={baseImageUrl('w342',item.poster_path)}
                 />
               )}
@@ -141,7 +141,7 @@ const HomeScreen = ({navigation}: any) => {
                   cardWidth={width / 3}
                   isFirst={index == 0 ? true:false}
                   isLast={index == upcomingMoviesList?.length - 1 ? true : false}
-                  title={item.original_title} 
+                  title={item.title} 
                   imagePath={baseImageUrl('w342',item.poster_path)}
                 />
               )}
@@ -161,7 +161,7 @@ const HomeScreen = ({navigation}: any) => {
                   cardWidth={width / 3}
                   isFirst={index == 0 ? true:false}
                   isLast={index == upcomingMoviesList?.length - 1 ? true : false}
-                  title={item.original_title} 
+                  title={item.title} 
                   imagePath={baseImageUrl('w342',item.poster_path)}
                 />
               )}
