@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet, Touchable, TouchableOpacity, Image } from 'react-native';
+import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 
 
@@ -36,8 +36,9 @@ const styles = StyleSheet.create({
         backgroundColor: COLORS.Black,
     },
     cardImage: {
-        aspectRatio:2/3,
+        aspectRatio: 2 / 3,
         borderRadius: BORDERRADIUS.radius_20,
+        
     },
     textTitle: {
         fontFamily: FONTFAMILY.poppins_regular,

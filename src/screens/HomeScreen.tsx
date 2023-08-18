@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Text, View, StyleSheet,Dimensions,SafeAreaView,TouchableOpacity,ActivityIndicator,ScrollView,StatusBar, FlatList } from 'react-native';
+import { Text, View, StyleSheet,Dimensions,TouchableOpacity,ActivityIndicator,ScrollView,StatusBar, FlatList } from 'react-native';
 import { COLORS, SPACING } from '../theme/theme';
 import { upComingMovies,nowPlayingMovies,popularMovies,baseImageUrl, searchMovies } from '../api/apicalls';
 import InputHeader from '../components/InputHeader';
@@ -99,15 +99,53 @@ const HomeScreen = ({navigation}: any) => {
     return (
       <ScrollView 
             style={styles.container} 
-            bounces={false}
-            contentContainerStyle={styles.scrollViewContainer}>
+            bounces={false}>
+            
             <StatusBar hidden/>
 
             <View style={styles.InputHeaderContainer}>
               <InputHeader searchFunction={searchMoviesFunction}/>
             </View>
             <CategoryHeader title={'Now Playing'}/>
+            <FlatList 
+              data={nowPlayingMoviesList}
+              keyExtractor={(item:any) => item.id}
+              horizontal
+              contentContainerStyle={styles.containerGap36}
+              renderItem={({item,index}) => (
+                <SubMovieCard 
+                  shoudlMarginatedAtEnd={true}
+                  cardFunction={() => {
+                    navigation.push('MovieDetails', {movieid: item.id})
+                  }}
+                  cardWidth={width / 3}
+                  isFirst={index == 0 ? true:false}
+                  isLast={index == upcomingMoviesList?.length - 1 ? true : false}
+                  title={item.original_title} 
+                  imagePath={baseImageUrl('w342',item.poster_path)}
+                />
+              )}
+            />
             <CategoryHeader title={'Popular'}/>
+            <FlatList 
+              data={popularMoviesList}
+              keyExtractor={(item:any) => item.id}
+              horizontal
+              contentContainerStyle={styles.containerGap36}
+              renderItem={({item,index}) => (
+                <SubMovieCard 
+                  shoudlMarginatedAtEnd={true}
+                  cardFunction={() => {
+                    navigation.push('MovieDetails', {movieid: item.id})
+                  }}
+                  cardWidth={width / 3}
+                  isFirst={index == 0 ? true:false}
+                  isLast={index == upcomingMoviesList?.length - 1 ? true : false}
+                  title={item.original_title} 
+                  imagePath={baseImageUrl('w342',item.poster_path)}
+                />
+              )}
+            />
             <CategoryHeader title={'Upcoming'}/>
             <FlatList 
               data={upcomingMoviesList}
@@ -116,21 +154,20 @@ const HomeScreen = ({navigation}: any) => {
               contentContainerStyle={styles.containerGap36}
               renderItem={({item,index}) => (
                 <SubMovieCard 
-                shoudlMarginatedAtEnd={true}
-                cardFunction={() => {
-                  navigation.push('MovieDetails', {movieid: item.id})
-                }}
-                cardWidth={width / 3}
-                isFirst={index == 0 ? true:false}
-                isLast={index == upcomingMoviesList?.length - 1 ? true : false}
-                title={item.original_title} 
-                imagePath={baseImageUrl('w342',item.poster_path)}/>
+                  shoudlMarginatedAtEnd={true}
+                  cardFunction={() => {
+                    navigation.push('MovieDetails', {movieid: item.id})
+                  }}
+                  cardWidth={width / 3}
+                  isFirst={index == 0 ? true:false}
+                  isLast={index == upcomingMoviesList?.length - 1 ? true : false}
+                  title={item.original_title} 
+                  imagePath={baseImageUrl('w342',item.poster_path)}
+                />
               )}
             />
           </ScrollView>
     )
-        
-    
 };
 
 
@@ -139,22 +176,28 @@ const styles = StyleSheet.create({
       display: 'flex',
       backgroundColor: COLORS.Black,
       
+      
     },
     scrollViewContainer:{
       flex: 1,
+      
+      
       
     },
     loadingContainer: {
       flex: 1,
       alignSelf: 'center',
       justifyContent: 'center',
+      
     },
     InputHeaderContainer:{
       marginHorizontal:SPACING.space_36,
       marginTop:SPACING.space_28,
+      
     },
     containerGap36: {
       gap: SPACING.space_36,
+      
     },
     
 });
