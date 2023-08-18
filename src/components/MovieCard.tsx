@@ -1,6 +1,8 @@
 import React from 'react';
 import { Text, View, StyleSheet, TouchableOpacity, Image } from 'react-native';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
+import CustomIcon from './CustomIcon';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
 const genres: any ={
     28:'Action',
@@ -44,7 +46,15 @@ const MovieCard = (props: any) => {
             <Image 
                 style={[styles.cardImage, {width: props.cardWidth}]}
                 source={{uri: props.imagePath}} />
-            <Text numberOfLines={1} style={styles.textTitle}>{props.title}</Text>
+            
+            <View>
+                <View style={styles.rateContainer}>
+                    <CustomIcon name='star' style={styles.starIcon}/>
+                    <Text style={styles.votText}>
+                    {props.vote_average}  ({props.vote_count})
+                    </Text>
+                </View>
+            </View>
         </View>
       </TouchableOpacity>
   );
@@ -68,7 +78,23 @@ const styles = StyleSheet.create({
         color:COLORS.White,
         textAlign: 'center',
         paddingVertical: SPACING.space_10,
-    }
+    },
+    rateContainer: {
+        flexDirection:'row',
+        gap:SPACING.space_10,
+        alignItems:'center',
+        justifyContent:'center',
+        marginTop:SPACING.space_10,
+    },
+    starIcon:{
+        fontSize:FONTSIZE.size_20,
+        color:COLORS.Yellow
+    },
+    votText:{
+        fontFamily:FONTFAMILY.poppins_medium,
+        fontSize:FONTSIZE.size_14,
+        color:COLORS.White,
+    },
 });
 
 export default MovieCard;

@@ -126,7 +126,7 @@ const HomeScreen = ({navigation}: any) => {
                   imagePath={baseImageUrl('w780',item.poster_path)}
                   genre={item.genre_ids.slice(1,4)}
                   vote_average={item.vote_average}
-                  vote_count={item.vote_average}
+                  vote_count={item.vote_count}
                 />
               )}
             />
