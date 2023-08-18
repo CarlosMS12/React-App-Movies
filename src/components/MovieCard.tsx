@@ -54,6 +54,16 @@ const MovieCard = (props: any) => {
                     {props.vote_average}  ({props.vote_count})
                     </Text>
                 </View>
+                <Text numberOfLines={1} style={styles.textTitle}>{props.title}</Text>
+                <View style={styles.genreContainer}>
+                    {props.genre.map((item: any) => {
+                        return (
+                            <View key={item} style={styles.genreBox}>
+                                <Text style={styles.genreText}>{genres[item]}</Text>
+                            </View>
+                        );
+                    })}
+                </View>
             </View>
         </View>
       </TouchableOpacity>
@@ -74,7 +84,7 @@ const styles = StyleSheet.create({
     },
     textTitle: {
         fontFamily: FONTFAMILY.poppins_regular,
-        fontSize:FONTSIZE.size_14,
+        fontSize:FONTSIZE.size_24,
         color:COLORS.White,
         textAlign: 'center',
         paddingVertical: SPACING.space_10,
@@ -95,6 +105,25 @@ const styles = StyleSheet.create({
         fontSize:FONTSIZE.size_14,
         color:COLORS.White,
     },
+    genreContainer:{
+        flex:1,
+        flexDirection: 'row',
+        gap: SPACING.space_20,
+        flexWrap: 'wrap',
+        justifyContent: 'center',
+    },
+    genreBox: {
+        borderColor: COLORS.WhiteRGBA50,
+        borderWidth:1,
+        paddingVertical: SPACING.space_4,
+        paddingHorizontal: SPACING.space_10,
+        borderRadius: BORDERRADIUS.radius_25,
+    },
+    genreText:{
+        fontFamily: FONTFAMILY.poppins_regular,
+        fontSize: FONTSIZE.size_10,
+        color: COLORS.WhiteRGBA75,
+    }
 });
 
 export default MovieCard;
