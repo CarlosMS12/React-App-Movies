@@ -29,7 +29,7 @@ const genres: any ={
 
 const MovieCard = (props: any) => {
   return (
-      <TouchableOpacity onPress={() => {}}>
+    <TouchableOpacity onPress={() => props.cardFunction()}>
         <View 
             style={[
                 styles.container,

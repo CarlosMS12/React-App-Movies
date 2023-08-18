@@ -57,7 +57,11 @@ const HomeScreen = ({navigation}: any) => {
     useEffect(()=> {
       (async() => {
         let tempNowPlaying = await getNowPlayingMoviesList();
-        setNowPlayingMoviesList(tempNowPlaying.results);
+        setNowPlayingMoviesList([
+          {id: 'dummy1'},
+          ...tempNowPlaying.results,
+          {id: 'dummy2'},
+        ]);
 
         let tempPopular = await getPopularMoviesList();
         setPopularMoviesList(tempPopular.results);
@@ -111,9 +115,19 @@ const HomeScreen = ({navigation}: any) => {
             <FlatList 
               data={nowPlayingMoviesList}
               keyExtractor={(item:any) => item.id}
+              bounces={false}
+              snapToInterval={width * 0.7 + SPACING.space_36}
               horizontal
+              decelerationRate={0}
               contentContainerStyle={styles.containerGap36}
-              renderItem={({item,index}) => (
+              renderItem={({item,index}) => {
+                if(!item.title) {
+                  return (
+                    <View style={{width: (width-(width*0.7 + SPACING.space_36*2)) /2,
+                  }}></View>
+                  )
+                }
+                return(
                 <MovieCard
                   shoudlMarginatedAtEnd={true}
                   cardFunction={() => {
@@ -128,12 +142,15 @@ const HomeScreen = ({navigation}: any) => {
                   vote_average={item.vote_average}
                   vote_count={item.vote_count}
                 />
-              )}
+                )
+                
+              }}
             />
             <CategoryHeader title={'Popular'}/>
             <FlatList 
               data={popularMoviesList}
               keyExtractor={(item:any) => item.id}
+              bounces={false}
               horizontal
               contentContainerStyle={styles.containerGap36}
               renderItem={({item,index}) => (
@@ -154,6 +171,7 @@ const HomeScreen = ({navigation}: any) => {
             <FlatList 
               data={upcomingMoviesList}
               keyExtractor={(item:any) => item.id}
+              bounces={false}
               horizontal
               contentContainerStyle={styles.containerGap36}
               renderItem={({item,index}) => (
