@@ -128,8 +128,8 @@ const HomeScreen = ({navigation}: any) => {
                   )
                 }
                 return(
-                <MovieCard
-                  shoudlMarginatedAtEnd={true}
+                <MovieCard 
+                  shoudlMarginatedAtEnd={true} 
                   cardFunction={() => {
                     navigation.push('MovieDetails', {movieid: item.id})
                   }}
