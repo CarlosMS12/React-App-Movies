@@ -1,9 +1,12 @@
 import React, {useEffect, useState} from 'react';
-import { Text, View, StyleSheet, ScrollView, ActivityIndicator } from 'react-native';
-import { movieCastDetails, movieDetails } from '../api/apicalls';
-import { COLORS } from '../theme/theme';
+import { Text, View, StyleSheet, ScrollView, ActivityIndicator, StatusBar, ImageBackground, Image } from 'react-native';
+import { baseImageUrl, movieCastDetails, movieDetails } from '../api/apicalls';
+import { COLORS, SPACING } from '../theme/theme';
+import AppHeader from '../components/AppHeader';
+import LinearGradient from 'react-native-linear-gradient';
 
 const getMovieDetails = async (movieid:number) => {
+
   try{
     let response = await fetch(movieDetails(movieid));
     let json = await response.json();
@@ -35,7 +38,7 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
 
     (async ()=>{
       const tempMovieCastData = await getMovieCastDetails(route.params.movieid);
-      setMovieData(tempMovieCastData);
+      setMovieCastData(tempMovieCastData);
     })();
   },[]);
 
@@ -52,8 +55,11 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
           contentContainerStyle={styles.scrollViewContainer}
           bounces={false}
           showsVerticalScrollIndicator={false}>
-          <View>
-            
+          <View style={styles.appHeaderContainer}>
+            <AppHeader 
+              name="close"
+              header={''}
+              action={() => navigation.goBack()}/>
           </View>
           <View style={styles.loadingContainer}>
               <ActivityIndicator  size={'large'} color={COLORS.Blue}/>  
@@ -62,11 +68,36 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
       )
     }
 
-  return (
-    <View style={styles.container}>
-      <Text>HomeScreen</Text>
-    </View>
-  );
+    return (
+      <ScrollView 
+        style={styles.container}
+        bounces={false}
+        showsVerticalScrollIndicator={false}>
+        <StatusBar hidden/>
+        <View >
+            <ImageBackground source={{uri:baseImageUrl('w780',movieData?.backdrop_path),
+          }}
+          style={styles.imageBG}>
+          <LinearGradient
+            colors={[COLORS.BlackRGB10, COLORS.Black]} 
+            style={styles.linearGradient}>
+              <View style={styles.appHeaderContainer}>
+                <AppHeader 
+                  name="close"
+                  header={''}
+                  action={() => navigation.goBack()}/>
+              </View>
+            </LinearGradient>
+          </ImageBackground>
+          <View style={styles.imageBG}>
+            <Image
+              source={{uri: baseImageUrl('w342', movieData?.poster_path)}}
+              style={styles.cardImage}
+            />
+          </View>
+        </View>
+      </ScrollView>
+    )
 }
 
 
@@ -85,6 +116,25 @@ const styles = StyleSheet.create({
     },
     scrollViewContainer:{
       flex:1,
+    },
+    appHeaderContainer: {
+      marginHorizontal:SPACING.space_36,
+      marginTop: SPACING.space_20 * 2,
+    },
+    imageBG:{
+      width: '100%',
+      aspectRatio: 3072 / 1727,
+    },
+    linearGradient:{
+      height: '100%',
+    },
+    cardImage:{
+      width: '60%',
+      aspectRatio: 200/300,
+      position: 'absolute',
+      alignSelf:'center',
+      bottom: 0,
+      borderRadius: 20,
     }
 });
 

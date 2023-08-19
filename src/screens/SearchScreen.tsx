@@ -29,6 +29,7 @@ const SearchScreen = ({navigation}: any) => {
                 keyExtractor={(item:any) => item.id}
                 bounces={false}
                 numColumns={2}
+                showsVerticalScrollIndicator={false}
                 ListHeaderComponent={
                   <View style={styles.InputHeaderContainer}>
                     <InputHeader searchFunction={searchMoviesFunction}/>
