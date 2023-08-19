@@ -17,7 +17,7 @@ const SearchScreen = ({navigation}: any) => {
       let json = await response.json();
       setSearchList(json.results);
     }catch (error){
-      console.error("Algo salió mal en la funcion searchMoviesFunction")
+      console.error("Algo salió mal en la funcion searchMoviesFunction",error)
     }
   }
 
