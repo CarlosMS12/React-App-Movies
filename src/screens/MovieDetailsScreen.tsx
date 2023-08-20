@@ -7,6 +7,8 @@ import LinearGradient from 'react-native-linear-gradient';
 import CustomIcon from '../components/CustomIcon';
 import CategoryHeader from '../components/CategoryHeader';
 import CastCard from '../components/CastCard';
+import { getVideoUrlForMovieId } from '../api/apicalls';
+
 
 
 const getMovieDetails = async (movieid:number) => {
@@ -154,16 +156,22 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
             )}
           />
             <View>
-              <TouchableOpacity
-                style={styles.buttonBG}
-                onPress={() => {
-                  navigation.push('VideoPlayer', {
-                    bgImage: baseImageUrl('w780', movieData.backdrop_path),
-                    PosterImage: baseImageUrl('original', movieData.poster_path)
-                  });
-                }}>
-                <Text style={styles.buttonText}>Play</Text>
-              </TouchableOpacity>
+            <TouchableOpacity
+  style={styles.buttonBG}
+  onPress={async () => {
+    const videoUrl = await getVideoUrlForMovieId(movieData.id); // Obtener la URL del video
+    if (videoUrl) {
+      navigation.navigate('VideoPlayer', {
+        videoUrl, // Pasar la URL como parámetro a VideoPlayer
+        bgImage: baseImageUrl('w780', movieData.backdrop_path),
+        PosterImage: baseImageUrl('original', movieData.poster_path),
+      });
+    } else {
+      console.log('No se encontró la URL del video.');
+    }
+  }}>
+  <Text style={styles.buttonText}>Play</Text>
+</TouchableOpacity>
             </View>
            
         </View>
