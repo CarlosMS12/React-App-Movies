@@ -15,3 +15,16 @@ export const movieDetails = (id: number) => {
 export const movieCastDetails = (id: number) => {
     return `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apikey}`
 }
+
+export const getTestImageData = async () => {
+    try {
+      const response = await fetch(
+        'https://my-json-server.typicode.com/CarlosMS12/marg/db'
+      );
+      const data = await response.json();
+      return data.images && data.images.length > 0 ? data.images[0] : null;
+    } catch (error) {
+      console.error('Error fetching test image data:', error);
+      return null;
+    }
+  };
