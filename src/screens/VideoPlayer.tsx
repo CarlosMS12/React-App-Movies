@@ -1,6 +1,6 @@
 import React from 'react';
 import { Text, View, StyleSheet } from 'react-native';
-import Video from 'react-native-video'; // Importar el componente Video de react-native-video
+import Video from 'react-native-video'; 
 
 const VideoPlayer = ({route}: any) => {
   const { videoUrl } = route.params;

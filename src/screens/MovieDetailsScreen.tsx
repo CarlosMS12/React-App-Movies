@@ -157,21 +157,21 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
           />
             <View>
             <TouchableOpacity
-  style={styles.buttonBG}
-  onPress={async () => {
-    const videoUrl = await getVideoUrlForMovieId(movieData.id); // Obtener la URL del video
-    if (videoUrl) {
-      navigation.navigate('VideoPlayer', {
-        videoUrl, // Pasar la URL como parámetro a VideoPlayer
-        bgImage: baseImageUrl('w780', movieData.backdrop_path),
-        PosterImage: baseImageUrl('original', movieData.poster_path),
-      });
-    } else {
-      console.log('No se encontró la URL del video.');
-    }
-  }}>
-  <Text style={styles.buttonText}>Play</Text>
-</TouchableOpacity>
+              style={styles.buttonBG}
+              onPress={async () => {
+                const videoUrl = await getVideoUrlForMovieId(movieData.id); // Obtener la URL del video
+                if (videoUrl) {
+                  navigation.navigate('VideoPlayer', {
+                    videoUrl, // Pasar la URL como parámetro a VideoPlayer
+                    bgImage: baseImageUrl('w780', movieData.backdrop_path),
+                    PosterImage: baseImageUrl('original', movieData.poster_path),
+                  });
+                } else {
+                  console.log('No se encontró la URL del video.');
+                }
+              }}>
+              <Text style={styles.buttonText}>Play</Text>
+            </TouchableOpacity>
             </View>
            
         </View>

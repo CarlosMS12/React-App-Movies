@@ -34,7 +34,7 @@ export const getTestImageData = async () => {
 // Nueva función para obtener la URL del video según el ID de la película
 export const getVideoUrlForMovieId = async (movieId: number): Promise<string | null> => {
   try {
-    const response = await fetch('https://raw.githubusercontent.com/CarlosMS12/hyperblog-1/master/db.json');
+    const response = await fetch('https://raw.githubusercontent.com/CarlosMS12/hyperblog-1/master/h.json');
     const data = await response.json();
 
     // Busca el video con el ID de la película
