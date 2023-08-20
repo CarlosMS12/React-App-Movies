@@ -6,6 +6,7 @@ import AppHeader from '../components/AppHeader';
 import LinearGradient from 'react-native-linear-gradient';
 import CustomIcon from '../components/CustomIcon';
 import CategoryHeader from '../components/CategoryHeader';
+import CastCard from '../components/CastCard';
 
 
 const getMovieDetails = async (movieid:number) => {
@@ -41,7 +42,7 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
 
     (async ()=>{
       const tempMovieCastData = await getMovieCastDetails(route.params.movieid);
-      setMovieCastData(tempMovieCastData);
+      setMovieCastData(tempMovieCastData.cast);
     })();
   },[]);
 
@@ -142,8 +143,16 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
               keyExtractor={(item:any) => item.id} 
               horizontal 
               contentContainerStyle={styles.containerGap24}
-              renderItem={({item, index}) => <Text>{item.original_name}</Text>}
-            />
+              renderItem={({item, index}) => (<CastCard
+              shouldMarginatedAtEnd={true} cardWidth={80}
+              isFirst={index == 0 ? true : false}
+              isLast={index == movieCastData?.length - 1 ? true:false}
+              imagePath={baseImageUrl('w185',item.profile_path)}
+              title={item.original_name}
+              subtitle={item.character}
+              />
+            )}
+          />
           </View>
           
       </ScrollView>
