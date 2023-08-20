@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { Text, View, StyleSheet, ScrollView, ActivityIndicator, StatusBar, ImageBackground, Image, FlatList } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, ActivityIndicator, StatusBar, ImageBackground, Image, FlatList, TouchableOpacity } from 'react-native';
 import { baseImageUrl, movieCastDetails, movieDetails } from '../api/apicalls';
 import { BORDERRADIUS, COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import AppHeader from '../components/AppHeader';
@@ -153,7 +153,20 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
               />
             )}
           />
-          </View>
+            <View>
+              <TouchableOpacity
+                style={styles.buttonBG}
+                onPress={() => {
+                  navigation.push('SeatBooking', {
+                    bgImage: baseImageUrl('w780', movieData.backdrop_path),
+                    PosterImage: baseImageUrl('original', movieData.poster_path)
+                  });
+                }}>
+                <Text style={styles.buttonText}>Play</Text>
+              </TouchableOpacity>
+            </View>
+
+        </View>
           
       </ScrollView>
     )
@@ -270,6 +283,20 @@ const styles = StyleSheet.create({
     },
     containerGap24:{
       gap: SPACING.space_24,
+    },
+    buttonBG: {
+      alignItems: 'center',
+      marginVertical: SPACING.space_24,
+    },
+    buttonText: {
+      borderRadius: BORDERRADIUS.radius_25 * 2,
+      paddingHorizontal: SPACING.space_24,
+      paddingVertical: SPACING.space_10,
+      backgroundColor: COLORS.Blue,
+      fontFamily: FONTFAMILY.poppins_medium,
+      fontSize: FONTSIZE.size_14,
+      color: COLORS.White,
+
     }
 });
 
