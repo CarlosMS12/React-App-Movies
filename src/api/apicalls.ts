@@ -22,7 +22,7 @@ export const getTestImageData = async () => {
         'https://my-json-server.typicode.com/CarlosMS12/marg/db'
       );
       const data = await response.json();
-      return data.images && data.images.length > 0 ? data.images[0] : null;
+      return data.videos && data.videos.length > 0 ? data.videos[0] : null;
     } catch (error) {
       console.error('Error fetching test image data:', error);
       return null;

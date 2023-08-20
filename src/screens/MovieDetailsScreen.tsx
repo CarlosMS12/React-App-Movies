@@ -157,7 +157,7 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
               <TouchableOpacity
                 style={styles.buttonBG}
                 onPress={() => {
-                  navigation.push('SeatBooking', {
+                  navigation.push('VideoPlayer', {
                     bgImage: baseImageUrl('w780', movieData.backdrop_path),
                     PosterImage: baseImageUrl('original', movieData.poster_path)
                   });
@@ -165,7 +165,7 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
                 <Text style={styles.buttonText}>Play</Text>
               </TouchableOpacity>
             </View>
-
+           
         </View>
           
       </ScrollView>
