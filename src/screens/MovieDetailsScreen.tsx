@@ -8,6 +8,7 @@ import CustomIcon from '../components/CustomIcon';
 import CategoryHeader from '../components/CategoryHeader';
 import CastCard from '../components/CastCard';
 import { getVideoUrlForMovieId } from '../api/apicalls';
+import PlayerVideo from './PlayerVideo';
 
 
 
@@ -161,7 +162,7 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
               onPress={async () => {
                 const videoUrl = await getVideoUrlForMovieId(movieData.id); // Obtener la URL del video
                 if (videoUrl) {
-                  navigation.navigate('VideoPlayer', {
+                  navigation.navigate('PlayerVideo', {
                     videoUrl, // Pasar la URL como parámetro a VideoPlayer
                     bgImage: baseImageUrl('w780', movieData.backdrop_path),
                     PosterImage: baseImageUrl('original', movieData.poster_path),

@@ -3949,6 +3949,11 @@ escape-string-regexp@^4.0.0:
   resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-4.0.0.tgz"
   integrity sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==
 
+escape-string-regexp@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/escape-string-regexp/-/escape-string-regexp-2.0.0.tgz"
+  integrity sha512-UpzcLCXolUWcNu5HtVMHYdXJjArjsF9C0aNnquZYY4uW/Vu0miy5YoWvbV345HauVvcAUnpRuhMMcqTcGOY2+w==
+
 eslint-config-prettier@^8.5.0:
   version "8.10.0"
   resolved "https://registry.npmjs.org/eslint-config-prettier/-/eslint-config-prettier-8.10.0.tgz"
@@ -5018,7 +5023,7 @@ internal-slot@^1.0.3, internal-slot@^1.0.5:
     has "^1.0.3"
     side-channel "^1.0.4"
 
-invariant@*, invariant@^2.2.4:
+invariant@*, invariant@^2.2.4, invariant@2.2.4:
   version "2.2.4"
   resolved "https://registry.npmjs.org/invariant/-/invariant-2.2.4.tgz"
   integrity sha512-phJfQVBuaJM5raOpJjSfkiD6BpbCE4Ns//LaXl6wGYtUBY83nWS6Rf9tXm2e8VaK60JEjYldbPif/A2B1C2gNA==
@@ -7600,6 +7605,11 @@ react-native-linear-gradient@^2.8.2:
   resolved "https://registry.npmjs.org/react-native-linear-gradient/-/react-native-linear-gradient-2.8.2.tgz"
   integrity sha512-hgmCsgzd58WNcDCyPtKrvxsaoETjb/jLGxis/dmU3Aqm2u4ICIduj4ECjbil7B7pm9OnuTkmpwXu08XV2mpg8g==
 
+react-native-media-console@^2.0.7:
+  version "2.0.7"
+  resolved "https://registry.npmjs.org/react-native-media-console/-/react-native-media-console-2.0.7.tgz"
+  integrity sha512-COgmAuM3BTELyiZMO7+8Db3KZDPMueVTMY42D9g80fs0nJbkDavq/jFx+QWUmyRMUhp1kFvX2+6yxUJFbYxu4A==
+
 react-native-safe-area-context@^4.7.1, "react-native-safe-area-context@>= 3.0.0":
   version "4.7.1"
   resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.7.1.tgz"
@@ -7621,7 +7631,7 @@ react-native-vector-icons@^10.0.0:
     prop-types "^15.7.2"
     yargs "^16.1.1"
 
-react-native-video@^5.2.1:
+react-native-video@^5.2.1, react-native-video@>=2.0.0:
   version "5.2.1"
   resolved "https://registry.npmjs.org/react-native-video/-/react-native-video-5.2.1.tgz"
   integrity sha512-aJlr9MeTuQ0LpZ4n+EC9RvhoKeiPbLtI2Rxy8u7zo/wzGevbRpWHSBj9xZ5YDBXnAVXzuqyNIkGhdw7bfdIBZw==
@@ -7631,7 +7641,15 @@ react-native-video@^5.2.1:
     prop-types "^15.7.2"
     shaka-player "^2.5.9"
 
-react-native@*, react-native@0.72.4:
+react-native-webview@^13.3.1:
+  version "13.3.1"
+  resolved "https://registry.npmjs.org/react-native-webview/-/react-native-webview-13.3.1.tgz"
+  integrity sha512-jTRC7bZB1gedAbZGGzQUnsaU+avZcZrKLT8g+RR0bsGW80tUOvwezwznKvQ+m1xXOpGFTD1B3+AazUP7+jy4mg==
+  dependencies:
+    escape-string-regexp "2.0.0"
+    invariant "2.2.4"
+
+react-native@*, react-native@>=0.46.0, react-native@0.72.4:
   version "0.72.4"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.72.4.tgz"
   integrity sha512-+vrObi0wZR+NeqL09KihAAdVlQ9IdplwznJWtYrjnQ4UbCW6rkzZJebRsugwUneSOKNFaHFEo1uKU89HsgtYBg==
