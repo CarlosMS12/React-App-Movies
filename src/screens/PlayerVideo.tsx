@@ -1,25 +1,46 @@
-import React from 'react';
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
+import React, { useState, useRef } from 'react';
+import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { VLCPlayer } from 'react-native-vlc-media-player';
 import { COLORS } from '../theme/theme';
-import VideoPlayer from 'react-native-media-console'; // Importa el componente
+import CustomIcon from '../components/CustomIcon';
 
 const PlayerVideo = ({ route }: any) => {
   const { videoUrl } = route.params;
-  const resizeMode = 'contain'; // Definir el valor de resizeMode aquí
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [showControls, setShowControls] = useState(true);
+  const vlcPlayerRef = useRef<any>(null); // Usar any aquí
+
+  const handlePlayPause = () => {
+    setIsPlaying(!isPlaying);
+    setShowControls(false);
+  };
+
+  const handlePlayerTouch = () => {
+    setShowControls(!showControls);
+  };
 
   return (
-    <View style={styles.container}>
-      <StatusBar hidden/>
-      <VideoPlayer
-        source={{ uri: videoUrl }}
-        style={styles.video} // Establece el estilo aquí
-        controls
-        showOnStart
-        showOnEnd
-        disableFullscreen={false}
-        toggleResizeModeOnFullscreen={true} // Puedes personalizar los controles según tus necesidades
-      />
-    </View>
+    <TouchableWithoutFeedback onPress={handlePlayerTouch}>
+      <View style={styles.container}>
+        <VLCPlayer
+          ref={vlcPlayerRef}
+          style={styles.video}
+          videoAspectRatio="16:9"
+          source={{ uri: videoUrl }}
+          paused={!isPlaying}
+          controls={true}
+          playInBackground={true}
+          onPlaying={() => {
+            setShowControls(false);
+          }}
+        />
+        {showControls && (
+          <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
+            <CustomIcon name={isPlaying ? 'star' : 'star'} style={styles.iconStyle} />
+          </TouchableOpacity>
+        )}
+      </View>
+    </TouchableWithoutFeedback>
   );
 };
 
@@ -28,12 +49,25 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: COLORS.Black,
   },
-  text: {
-    color: 'white',
-  },
   video: {
     flex: 1,
-    width: '100%', // Utiliza flex para que el reproductor ocupe todo el espacio disponible
+    width: '100%',
+  },
+  playPauseButton: {
+    position: 'absolute',
+    top: '50%',
+    left: '50%',
+    transform: [{ translateX: -25 }, { translateY: -25 }],
+    width: 50,
+    height: 50,
+    borderRadius: 25,
+    backgroundColor: 'rgba(0, 0, 0, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  iconStyle: {
+    fontSize: 24,
+    color: COLORS.White,
   },
 });
 
