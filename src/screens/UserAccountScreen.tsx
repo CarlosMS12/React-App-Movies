@@ -12,9 +12,8 @@ const UserAccountScreen = ({navigation}:any) => {
         <AppHeader
           name="close"
           action={() => navigation.goBack()}/> 
-
       </View>
-      <Text style={styles.headerText}>My Profile</Text>
+        <Text style={styles.headerText}>My Profile</Text>
     </View>
   );
 };

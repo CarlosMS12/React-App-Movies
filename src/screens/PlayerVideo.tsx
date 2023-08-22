@@ -2,7 +2,8 @@ import React, { useState, useRef } from 'react';
 import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { VLCPlayer } from 'react-native-vlc-media-player';
 import { COLORS } from '../theme/theme';
-import CustomIcon from '../components/CustomIcon';
+/* import CustomIcon from '../components/CustomIcon'; */
+import Feather from 'react-native-vector-icons/Feather';
 
 const PlayerVideo = ({ route }: any) => {
   const { videoUrl } = route.params;
@@ -36,7 +37,8 @@ const PlayerVideo = ({ route }: any) => {
         />
         {showControls && (
           <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
-            <CustomIcon name={isPlaying ? 'star' : 'star'} style={styles.iconStyle} />
+            <Feather name={isPlaying ? 'pause' : 'play'} style={styles.iconStyle}/>
+            
           </TouchableOpacity>
         )}
       </View>
