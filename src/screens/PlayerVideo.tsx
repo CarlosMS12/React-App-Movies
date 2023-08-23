@@ -2,14 +2,13 @@ import React, { useState, useRef } from 'react';
 import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
 import { VLCPlayer } from 'react-native-vlc-media-player';
 import { COLORS } from '../theme/theme';
-/* import CustomIcon from '../components/CustomIcon'; */
 import Feather from 'react-native-vector-icons/Feather';
 
 const PlayerVideo = ({ route }: any) => {
   const { videoUrl } = route.params;
   const [isPlaying, setIsPlaying] = useState(false);
   const [showControls, setShowControls] = useState(true);
-  const vlcPlayerRef = useRef<any>(null); // Usar any aquí
+  const vlcPlayerRef = useRef<any>(null);
 
   const handlePlayPause = () => {
     setIsPlaying(!isPlaying);
@@ -18,6 +17,23 @@ const PlayerVideo = ({ route }: any) => {
 
   const handlePlayerTouch = () => {
     setShowControls(!showControls);
+  };
+
+  const handlePlayerPlaying = () => {
+    setShowControls(false);
+  };
+
+  const handlePlayerPaused = () => {
+    setShowControls(true);
+  };
+
+  const handlePlayerStopped = () => {
+    setShowControls(true);
+  };
+
+  const handlePlayerEnded = () => {
+    setIsPlaying(false);
+    setShowControls(true);
   };
 
   return (
@@ -31,15 +47,17 @@ const PlayerVideo = ({ route }: any) => {
           paused={!isPlaying}
           controls={true}
           playInBackground={true}
-          onPlaying={() => {
-            setShowControls(false);
-          }}
+          onPlaying={handlePlayerPlaying}
+          onPaused={handlePlayerPaused}
+          onStopped={handlePlayerStopped}
+          onEnded={handlePlayerEnded}
         />
         {showControls && (
-          <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
-            <Feather name={isPlaying ? 'pause' : 'play'} style={styles.iconStyle}/>
-            
-          </TouchableOpacity>
+          <>
+            <TouchableOpacity style={styles.playPauseButton} onPress={handlePlayPause}>
+              <Feather name={isPlaying ? 'pause' : 'play'} style={styles.iconStyle} />
+            </TouchableOpacity>
+          </>
         )}
       </View>
     </TouchableWithoutFeedback>
