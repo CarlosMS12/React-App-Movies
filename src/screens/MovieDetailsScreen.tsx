@@ -156,24 +156,32 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
               />
             )}
           />
-            <View>
-            <TouchableOpacity
-              style={styles.buttonBG}
-              onPress={async () => {
-                const videoUrl = await getVideoUrlForMovieId(movieData.id); // Obtener la URL del video
-                if (videoUrl) {
-                  navigation.navigate('PlayerVideo', {
-                    videoUrl, // Pasar la URL como parámetro a VideoPlayer
-                    bgImage: baseImageUrl('w780', movieData.backdrop_path),
-                    PosterImage: baseImageUrl('original', movieData.poster_path),
-                  });
-                } else {
-                  console.log('No se encontró la URL del video.');
-                }
-              }}>
-              <Text style={styles.buttonText}>Play</Text>
-            </TouchableOpacity>
-            </View>
+             <View>
+      <TouchableOpacity
+        style={styles.buttonBG}
+        onPress={async () => {
+          const videoUrl = await getVideoUrlForMovieId(movieData.id); // Obtener la URL del video
+
+          if (videoUrl) {
+            navigation.navigate('PlayerVideo', {
+              videoUrl, // Pasar la URL como parámetro a VideoPlayer
+              bgImage: baseImageUrl('w780', movieData.backdrop_path),
+              PosterImage: baseImageUrl('original', movieData.poster_path),
+            });
+          } else {
+            // Si no se encuentra la URL del video, reproduce una URL específica
+            const fallbackVideoUrl = 'https://be2719.rcr22.ams01.cdn112.com/download/03/04469/6cmyfv5vwi30_h/test%201%20mp4?t=4yIP0z62uxPu7ywYzmKE4GSR612rQRPpvQa8w-LJ8-8&s=1692913771&e=43200&f=22347687&srv=30&asn=270068&sp=500';
+            navigation.navigate('PlayerVideo', {
+              videoUrl: fallbackVideoUrl,
+              bgImage: baseImageUrl('w780', movieData.backdrop_path),
+              PosterImage: baseImageUrl('original', movieData.poster_path),
+            });
+            console.log('Reproduciendo video random');
+          }
+        }}>
+        <Text style={styles.buttonText}>Play</Text>
+      </TouchableOpacity>
+    </View>
            
         </View>
           

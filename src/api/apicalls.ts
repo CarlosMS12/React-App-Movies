@@ -20,17 +20,6 @@ export const movieCastDetails = (id: number) => {
   return `https://api.themoviedb.org/3/movie/${id}/credits?api_key=${apikey}`;
 };
 
-export const getTestImageData = async () => {
-  try {
-    const response = await fetch('https://my-json-server.typicode.com/CarlosMS12/marg/db');
-    const data = await response.json();
-    return data.videos && data.videos.length > 0 ? data.videos[0] : null;
-  } catch (error) {
-    console.error('Error fetching test image data:', error);
-    return null;
-  }
-};
-
 // Nueva función para obtener la URL del video según el ID de la película
 export const getVideoUrlForMovieId = async (movieId: number): Promise<string | null> => {
   try {

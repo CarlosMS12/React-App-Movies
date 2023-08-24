@@ -11,7 +11,8 @@ const AppHeader = (props:any) => {
         <CustomIcon name={props.name} style={styles.iconStyle}/>
       </TouchableOpacity>
       <Text style={styles.headerText}>{props.header}</Text>
-      <View style={styles.emptyContainer}></View>
+      <View style={styles.emptyContainer}>
+      </View>
     </View>
   );
 };
@@ -41,11 +42,11 @@ const styles = StyleSheet.create({
         width: SPACING.space_20 * 2,
     },
     iconBG:{
-        height: SPACING.space_32,
-        width: SPACING.space_32,
+        height: SPACING.space_36 ,
+        width: SPACING.space_36 ,
         alignItems: 'center',
         justifyContent: 'center',
-        borderRadius: BORDERRADIUS.radius_25,
+        borderRadius: BORDERRADIUS.radius_20,
         backgroundColor: COLORS.Blue,
     }
 });

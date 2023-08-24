@@ -1,17 +1,55 @@
-import { Text, View, StyleSheet, StatusBar } from 'react-native';
+import { Text, View, StyleSheet, StatusBar, ScrollView, Image } from 'react-native';
 import { COLORS, FONTFAMILY, FONTSIZE, SPACING } from '../theme/theme';
 import AppHeader from '../components/AppHeader';
+import SettingComponent from '../components/SettingComponent';
 
 
 const UserAccountScreen = ({ navigation }: any) => {
   return (
-    <View style={styles.container}>
+    <ScrollView style={styles.container} bounces={false} showsVerticalScrollIndicator={false}>
       <StatusBar hidden />
       <View style={styles.appHeaderContainer}>
-        <AppHeader name="close" action={() => navigation.goBack()} />
+        <AppHeader 
+          header={'My Profile'} 
+          name="close" 
+          action={() => navigation.goBack()} 
+        />
       </View>
-      <Text style={styles.headerText}>My Profile</Text>
-    </View>
+
+      <View style={styles.profileContainer}>
+        <Image source={require('../assets/image/avatar.png')} style={styles.avatarImage}/>
+        <Text style={styles.avatarText}>Bugs Bunny</Text>
+      </View>
+
+      <View style={styles.profileContainer}>
+        <SettingComponent 
+          icon='user'
+          heading="Account"
+          subheading="Edit Profile"
+          subtitle="Change Password"
+        />
+        <SettingComponent 
+          icon='setting'
+          heading="Settings"
+          subheading="Theme"
+          subtitle="Permissions"
+        />
+        <SettingComponent 
+          icon='dollar'
+          heading="Offers & Refferrals"
+          subheading="Offer"
+          subtitle="Refferrals"
+        />
+        <SettingComponent 
+          icon='info'
+          heading="About"
+          subheading="About Movies"
+          subtitle="more"
+        />
+      </View>
+
+
+    </ScrollView>
   );
 };
 
@@ -25,14 +63,24 @@ const styles = StyleSheet.create({
     marginHorizontal: SPACING.space_36,
     marginTop: SPACING.space_20 * 2,
   },
-  headerText: {
-    flex: 1,
-    fontFamily: FONTFAMILY.poppins_medium,
-    fontSize: FONTSIZE.size_20,
-    textAlign: 'center',
-    color: COLORS.White,
-    marginTop: -SPACING.space_12,
+  profileContainer:{
+    alignItems:'center',
+    padding: SPACING.space_36,
+
   },
+  avatarText:{
+    fontFamily: FONTFAMILY.poppins_medium,
+    fontSize: FONTSIZE.size_16,
+    marginTop: SPACING.space_16,
+    color: COLORS.White,
+  },
+  avatarImage:{
+    height: 80,
+    width: 80,
+    borderRadius: 80,
+    
+  }
+  
 });
 
 export default UserAccountScreen;
