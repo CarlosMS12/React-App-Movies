@@ -1,13 +1,18 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
 import { VLCPlayer } from 'react-native-vlc-media-player';
+import Slider from '@react-native-community/slider'; // Import Slider from the community package
 import { COLORS } from '../theme/theme';
 import Feather from 'react-native-vector-icons/Feather';
+
+
 
 const PlayerVideo = ({ route }: any) => {
   const { videoUrl } = route.params;
   const [isPlaying, setIsPlaying] = useState(true);
   const [showControls, setShowControls] = useState(true);
+  const [currentTime, setCurrentTime] = useState(0); // Added for the slider
+  const [totalTime, setTotalTime] = useState(0); // Added for the slider
   const vlcPlayerRef = useRef<any>(null);
 
   const handlePlayPause = () => {
@@ -37,19 +42,34 @@ const PlayerVideo = ({ route }: any) => {
   };
 
   const handleJumpForward = () => {
-    vlcPlayerRef.current.seek(20); // Saltar 20 segundos hacia adelante
+    vlcPlayerRef.current.seek(20);
   };
 
   const handleJumpBackward = () => {
-    vlcPlayerRef.current.seek(-20); // Retroceder 20 segundos
+    vlcPlayerRef.current.seek(-20);
+  };
+
+  const handleSliderValueChange = (value: number) => {
+    setCurrentTime(value);
+  };
+
+  const handleSliderSlidingComplete = (value: number) => {
+    vlcPlayerRef.current.seek(value);
   };
 
   useEffect(() => {
     setIsPlaying(true);
   }, []);
+  const formatTime = (milliseconds: number) => {
+    const totalSeconds = Math.floor(milliseconds / 1000);
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
 
+    return `${hours}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+  };
   const initOptions = [
-    '--file-caching=15000', // Precarga de segmentos en milisegundos (20 segundos)
+    '--file-caching=15000',
   ];
 
   return (
@@ -68,6 +88,10 @@ const PlayerVideo = ({ route }: any) => {
           onPaused={handlePlayerPaused}
           onStopped={handlePlayerStopped}
           onEnded={handlePlayerEnded}
+          onProgress={(event: any) => {
+            setCurrentTime(event.currentTime);
+            setTotalTime(event.duration);
+          }}
         />
         {showControls && (
           <>
@@ -82,6 +106,22 @@ const PlayerVideo = ({ route }: any) => {
                 <Feather name="fast-forward" style={styles.iconStyle} />
               </TouchableOpacity>
             </View>
+            {/* Slider for video progress */}
+            <View style={styles.sliderContainer}>
+              <Text style={styles.timeText}>{formatTime(Math.floor(currentTime))}</Text>
+              <Slider
+                style={styles.slider}
+                minimumValue={0}
+                maximumValue={totalTime}
+                value={currentTime}
+                minimumTrackTintColor="#30a935"
+                thumbTintColor="#30a935"
+                onValueChange={handleSliderValueChange}
+                onSlidingComplete={handleSliderSlidingComplete}
+              />
+              <Text style={styles.timeText}>{formatTime(Math.floor(totalTime))}</Text>
+            </View>
+            
           </>
         )}
       </View>
@@ -101,7 +141,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     position: 'absolute',
     top: '50%',
-    transform: [{ translateY: -20 }], // Ajuste para centrar verticalmente
+    transform: [{ translateY: -20 }],
     left: 0,
     right: 0,
     flexDirection: 'row',
@@ -129,6 +169,20 @@ const styles = StyleSheet.create({
   iconStyle: {
     fontSize: 24,
     color: COLORS.White,
+  },
+  sliderContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+  },
+  slider: {
+    flex: 1,
+    marginHorizontal: 10,
+  },
+  timeText: {
+    color: COLORS.White,
+    fontSize: 12,
   },
 });
 

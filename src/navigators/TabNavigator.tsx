@@ -58,7 +58,7 @@ const TabNavigator = () => {
                 }
             }}
         />
-        <Tab.Screen 
+       {/*  <Tab.Screen 
             name="Ticket" 
             component={TicketScreen} 
             options={{
@@ -74,7 +74,7 @@ const TabNavigator = () => {
                     </View>;
                 }
             }}
-        />
+        /> */}
         <Tab.Screen name="User" component={UserAccountScreen} options={{
                 tabBarShowLabel: false,
                 tabBarIcon:({focused,color,size}) => {

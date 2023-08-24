@@ -2069,6 +2069,11 @@
     prompts "^2.4.0"
     semver "^7.5.2"
 
+"@react-native-community/slider@^4.4.3":
+  version "4.4.3"
+  resolved "https://registry.npmjs.org/@react-native-community/slider/-/slider-4.4.3.tgz"
+  integrity sha512-WdjvGtqJfqcCiLwtbzie53Z/H6w6dIfRHhlW832D89ySAdE5DxLAsqRhDOG0eacuAxxEB+T9sGCkVMD0fa3aBg==
+
 "@react-native/assets-registry@^0.72.0":
   version "0.72.0"
   resolved "https://registry.npmjs.org/@react-native/assets-registry/-/assets-registry-0.72.0.tgz"
@@ -3702,6 +3707,15 @@ deprecated-react-native-prop-types@^2.2.0:
   integrity sha512-pWD0voFtNYxrVqvBMYf5gq3NA2GCpfodS1yNynTPc93AYA/KEMGeWDqqeUB6R2Z9ZofVhks2aeJXiuQqKNpesA==
   dependencies:
     "@react-native/normalize-color" "*"
+    invariant "*"
+    prop-types "*"
+
+deprecated-react-native-prop-types@^4.2.1:
+  version "4.2.1"
+  resolved "https://registry.npmjs.org/deprecated-react-native-prop-types/-/deprecated-react-native-prop-types-4.2.1.tgz"
+  integrity sha512-ef9AXisRrRhxuxd7d+noOEeGTtxIPVkfOQWf9WZUWuOqI+gs7P7hKTi49Rgb/dfvkmFULhwxO2UqAkH4nJsMfw==
+  dependencies:
+    "@react-native/normalize-colors" "*"
     invariant "*"
     prop-types "*"
 
