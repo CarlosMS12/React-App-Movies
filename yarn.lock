@@ -6115,7 +6115,7 @@ lodash.throttle@^4.1.1:
   resolved "https://registry.npmjs.org/lodash.throttle/-/lodash.throttle-4.1.1.tgz"
   integrity sha512-wIkUCfVKpVsWo3JSZlc+8MB5it+2AN5W8J7YVMST30UrvcQNZ1Okbj+rbVniijTWE6FGYy4XJq/rHkas8qJMLQ==
 
-lodash@^4.17.13, lodash@^4.17.21, lodash@^4.17.4:
+lodash@^4.16.4, lodash@^4.17.13, lodash@^4.17.21, lodash@^4.17.4:
   version "4.17.21"
   resolved "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
   integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
@@ -7713,6 +7713,11 @@ react-native-media-console@^2.0.7:
   resolved "https://registry.npmjs.org/react-native-media-console/-/react-native-media-console-2.0.7.tgz"
   integrity sha512-COgmAuM3BTELyiZMO7+8Db3KZDPMueVTMY42D9g80fs0nJbkDavq/jFx+QWUmyRMUhp1kFvX2+6yxUJFbYxu4A==
 
+react-native-media-controls@^2.3.0:
+  version "2.3.0"
+  resolved "https://registry.npmjs.org/react-native-media-controls/-/react-native-media-controls-2.3.0.tgz"
+  integrity sha512-N10i12ZO+GIXjmdA9hQk/HuBm5u9xWPIOydG/2SvLEZcnY3xg3D8d2IJXRolzSm2jBRgEGSO4rMgRBU6MpdNMg==
+
 react-native-safe-area-context@^4.7.1, "react-native-safe-area-context@>= 3.0.0":
   version "4.7.1"
   resolved "https://registry.npmjs.org/react-native-safe-area-context/-/react-native-safe-area-context-4.7.1.tgz"
@@ -7748,6 +7753,13 @@ react-native-vector-icons@^9.2.0:
   dependencies:
     prop-types "^15.7.2"
     yargs "^16.1.1"
+
+react-native-video-controls@^2.8.1:
+  version "2.8.1"
+  resolved "https://registry.npmjs.org/react-native-video-controls/-/react-native-video-controls-2.8.1.tgz"
+  integrity sha512-dBmrE3TAKaR1gYMfbukjAM6Xo8OMZyRrxPzZtnaUgWcvGo11PQwzaI/j8HPD5fLgO+rlweP2pDpEJyIBsJvJkw==
+  dependencies:
+    lodash "^4.16.4"
 
 react-native-video@^5.2.1, react-native-video@>=2.0.0:
   version "5.2.1"
@@ -7789,7 +7801,7 @@ react-native-webview@^13.3.1:
     escape-string-regexp "2.0.0"
     invariant "2.2.4"
 
-react-native@*, react-native@>=0.46.0, react-native@>=0.61.4, react-native@0.72.4:
+react-native@*, react-native@>=0.46.0, react-native@>=0.60, react-native@>=0.61.4, react-native@0.72.4:
   version "0.72.4"
   resolved "https://registry.npmjs.org/react-native/-/react-native-0.72.4.tgz"
   integrity sha512-+vrObi0wZR+NeqL09KihAAdVlQ9IdplwznJWtYrjnQ4UbCW6rkzZJebRsugwUneSOKNFaHFEo1uKU89HsgtYBg==
@@ -7853,7 +7865,7 @@ react-test-renderer@18.2.0:
     react-shallow-renderer "^16.15.0"
     scheduler "^0.23.0"
 
-react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, react@>=16.13.1, react@>=16.8, react@>=17.0.0, react@18.2.0:
+react@*, "react@^16.0.0 || ^17.0.0 || ^18.0.0", "react@^16.8.0 || ^17.0.0 || ^18.0.0", react@^18.0.0, react@^18.2.0, react@>=16, react@>=16.13.1, react@>=16.8, react@>=17.0.0, react@18.2.0:
   version "18.2.0"
   resolved "https://registry.npmjs.org/react/-/react-18.2.0.tgz"
   integrity sha512-/3IjMdb2L9QbBdWiW5e3P2/npwMBaU9mHCSCUzNln0ZCYbcfTsGbTJrU/kGemdH2IWmB2ioZ+zkxtmq6g09fGQ==

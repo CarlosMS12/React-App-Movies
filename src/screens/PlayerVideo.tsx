@@ -42,7 +42,7 @@ const PlayerVideo = ({ route }: any) => {
   };
 
   const handleJumpForward = () => {
-    vlcPlayerRef.current.seek(20);
+    vlcPlayerRef.current.seek(+20);
   };
 
   const handleJumpBackward = () => {
@@ -171,14 +171,23 @@ const styles = StyleSheet.create({
     color: COLORS.White,
   },
   sliderContainer: {
+    // Ajusta la posición del contenedor del slider
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
     paddingHorizontal: 20,
+    paddingBottom: 10, // Agrega un poco de espacio en la parte inferior para que no esté demasiado pegado al borde
+    backgroundColor: 'rgba(0, 0, 0, 0.5)', // Opcional: agrega un fondo semitransparente
   },
   slider: {
+    // Ajusta el estilo del slider
     flex: 1,
-    marginHorizontal: 10,
+    marginHorizontal: 0, // Elimina los márgenes horizontales
+    backgroundColor: 'transparent', // Hace que el fondo del slider sea transparente
   },
   timeText: {
     color: COLORS.White,
