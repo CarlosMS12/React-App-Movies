@@ -170,7 +170,7 @@ const MovieDetailsScreen = ({navigation,route}:any) => {
             });
           } else {
             // Si no se encuentra la URL del video, reproduce una URL específica
-            const fallbackVideoUrl = 'https://be2719.rcr22.ams01.cdn112.com/download/03/04469/6cmyfv5vwi30_h/test%201%20mp4?t=4yIP0z62uxPu7ywYzmKE4GSR612rQRPpvQa8w-LJ8-8&s=1692913771&e=43200&f=22347687&srv=30&asn=270068&sp=500';
+            const fallbackVideoUrl = 'https://github.com/CarlosMS12/hyperblog-1/raw/master/imagenes/Untitled%20(1).mp4';
             navigation.navigate('PlayerVideo', {
               videoUrl: fallbackVideoUrl,
               bgImage: baseImageUrl('w780', movieData.backdrop_path),
