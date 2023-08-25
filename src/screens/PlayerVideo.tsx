@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, TouchableWithoutFeedback, Text, StatusBar } from 'react-native';
 import { VLCPlayer } from 'react-native-vlc-media-player';
 import Slider from '@react-native-community/slider'; // Import Slider from the community package
 import { COLORS } from '../theme/theme';
@@ -42,11 +42,11 @@ const PlayerVideo = ({ route }: any) => {
   };
 
   const handleJumpForward = () => {
-    vlcPlayerRef.current.seek(+20);
+    
   };
 
   const handleJumpBackward = () => {
-    vlcPlayerRef.current.seek(-20);
+    
   };
 
   const handleSliderValueChange = (value: number) => {
@@ -75,6 +75,7 @@ const PlayerVideo = ({ route }: any) => {
   return (
     <TouchableWithoutFeedback onPress={handlePlayerTouch}>
       <View style={styles.container}>
+        <StatusBar hidden/>
         <VLCPlayer
           ref={vlcPlayerRef}
           style={styles.video}
@@ -118,6 +119,7 @@ const PlayerVideo = ({ route }: any) => {
                 thumbTintColor="#30a935"
                 onValueChange={handleSliderValueChange}
                 onSlidingComplete={handleSliderSlidingComplete}
+                disabled={true}
               />
               <Text style={styles.timeText}>{formatTime(Math.floor(totalTime))}</Text>
             </View>
